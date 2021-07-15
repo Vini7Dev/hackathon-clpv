@@ -5,7 +5,7 @@ const {
   primary,
 } = theme.colors;
 
-export const Container = styled.View`
+export const Container = styled.TouchableHighlight`
   position: absolute;
   bottom: 0px;
   width: 100%;
@@ -15,9 +15,11 @@ export const Container = styled.View`
   justify-content: center;
   border-top-width: 1px;
   border-top-color: ${primary};
+  background-color: #FFFFFF;
 `;
 
 export const ButtonText = styled.Text`
+  margin-left: 4px;
   color: ${primary};
   font-size: 22px;
 `;

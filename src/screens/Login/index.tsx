@@ -57,11 +57,11 @@ const Login: React.FC = () => {
 
           <Form>
             <InputMargin>
-              <Input />
+              <Input iconName="at-sign" placeholder="Informe seu e-mail" keyboardType="email-address" />
             </InputMargin>
 
             <InputMargin>
-              <Input />
+              <Input iconName="lock" placeholder="*******" secureTextEntry />
 
               <ForgotPassword>
                 Esqueci minha senha
@@ -75,7 +75,7 @@ const Login: React.FC = () => {
         </Content>
       </Container>
 
-      {!keyboardIsOpen && <FooterButton />}
+      {!keyboardIsOpen && <FooterButton iconName="log-in" />}
     </KeyboardAvoidingView>
   );
 };

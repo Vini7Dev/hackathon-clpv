@@ -1,4 +1,5 @@
 import React from 'react';
+import { TouchableOpacityProps } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
 import theme from '../../global/styles/theme';
@@ -7,16 +8,22 @@ import {
   ButtonText,
 } from './styles';
 
+interface IFooterButton extends TouchableOpacityProps {
+  iconName: string;
+}
+
 const { primary } = theme.colors;
 
-const FooterButton: React.FC = () => {
+const FooterButton: React.FC<IFooterButton> = ({ iconName, ...rest }) => {
   return (
-    <Container>
-      <Icon name="log-in" color={primary} size={24} />
+    <Container activeOpacity={0.7} {...rest}>
+      <>
+        <Icon name={iconName} color={primary} size={24} />
 
-      <ButtonText>
-        Criar uma conta
-      </ButtonText>
+        <ButtonText>
+          Criar uma conta
+        </ButtonText>
+      </>
     </Container>
   );
 };
