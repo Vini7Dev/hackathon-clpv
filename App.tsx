@@ -6,12 +6,13 @@ import {
 
 import Login from './src/screens/Login';
 import CreateAccount from './src/screens/CreateAccount';
+import RecoverPassword from './src/screens/RecoverPassword';
 
 const App: React.FC = () => {
   return (
     <SafeAreaView>
       <StatusBar />
-      <Login />
+      <RecoverPassword />
     </SafeAreaView>
   );
 };
