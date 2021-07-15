@@ -7,11 +7,11 @@ const {
 } = theme.colors;
 
 const {
-  interRegular,
+  inter_regular,
 } = theme.fonts;
 
 export const DescriptionText = styled.Text`
   color: ${text};
   font-size: 20px;
-  font-family: ${interRegular};
+  font-family: ${inter_regular};
 `;

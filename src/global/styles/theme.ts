@@ -11,18 +11,19 @@ const theme = {
     alert_light: '#FD8702',
 
     text: '#6F6F6F',
+    text_dark: '#525252',
     input_border: '#B6B2B3',
     input_icon_background: '#F3F3F3',
   },
 
   fonts: {
-    interExtraBold: 'Inter-ExtraBold',
-    interMedium: 'Inter-Medium',
-    interRegular: 'Inter-Regular',
-    poppinsRegular: 'Poppins-Regular',
-    poppinsSemiBold: 'Poppins-SemiBold',
-    ubuntuMedium: 'Ubuntu-Medium',
-    ubuntuRegular: 'Ubuntu-Regular',
+    inter_extraBold: 'Inter-ExtraBold',
+    inter_medium: 'Inter-Medium',
+    inter_regular: 'Inter-Regular',
+    poppins_regular: 'Poppins-Regular',
+    poppins_semiBold: 'Poppins-SemiBold',
+    ubuntu_medium: 'Ubuntu-Medium',
+    ubuntu_regular: 'Ubuntu-Regular',
   },
 };
 

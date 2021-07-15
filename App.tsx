@@ -9,11 +9,13 @@ import CreateAccount from './src/screens/CreateAccount';
 import RecoverPassword from './src/screens/RecoverPassword';
 import ResetPassword from './src/screens/ResetPassword';
 
+import Home from './src/screens/Home';
+
 const App: React.FC = () => {
   return (
     <SafeAreaView>
       <StatusBar />
-      <RecoverPassword />
+      <Home />
     </SafeAreaView>
   );
 };

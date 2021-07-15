@@ -9,7 +9,7 @@ const {
 } = theme.colors;
 
 const {
-  interRegular,
+  inter_regular,
 } = theme.fonts;
 
 export const Container = styled.View`
@@ -38,5 +38,5 @@ export const InputElement = styled.TextInput`
   padding: 0 68px 0 20px;
   color: ${text};
   font-size: 15px;
-  font-family: ${interRegular};
+  font-family: ${inter_regular};
 `;

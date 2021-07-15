@@ -7,12 +7,12 @@ const {
 } = theme.colors;
 
 const {
-  ubuntuMedium,
+  ubuntu_medium,
 } = theme.fonts;
 
 export const TitleText = styled.Text`
   width: 100%;
   color: ${primary};
   font-size: 40px;
-  font-family: ${ubuntuMedium};
+  font-family: ${ubuntu_medium};
 `;

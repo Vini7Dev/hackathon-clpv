@@ -8,7 +8,7 @@ const {
 } = theme.colors;
 
 const {
-  interRegular,
+  inter_regular,
 } = theme.fonts;
 
 export const Container = styled.View`
@@ -21,7 +21,7 @@ export const Label = styled.Text`
   color: ${text};
   text-align: right;
   font-size: 12px;
-  font-family: ${interRegular};
+  font-family: ${inter_regular};
 `;
 
 export const CechboxElement = styled.Pressable`

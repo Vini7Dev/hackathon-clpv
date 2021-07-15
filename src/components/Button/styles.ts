@@ -7,7 +7,7 @@ const {
 } = theme.colors;
 
 const {
-  ubuntuMedium,
+  ubuntu_medium,
 } = theme.fonts;
 
 export const Container = styled.TouchableOpacity`
@@ -22,5 +22,5 @@ export const Container = styled.TouchableOpacity`
 export const ButtonText = styled.Text`
   color: #FFFFFF;
   font-size: 22px;
-  font-family: ${ubuntuMedium};
+  font-family: ${ubuntu_medium};
 `;
