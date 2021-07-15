@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   Container,
   ButtonText,
@@ -6,7 +7,7 @@ import {
 
 const Button: React.FC = () => {
   return (
-    <Container onPress={() => console.log('OK')}>
+    <Container activeOpacity={0.7} onPress={() => console.log('OK')}>
       <ButtonText>
         Entrar
       </ButtonText>
