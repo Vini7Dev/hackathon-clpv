@@ -7,12 +7,13 @@ import {
 import Login from './src/screens/Login';
 import CreateAccount from './src/screens/CreateAccount';
 import RecoverPassword from './src/screens/RecoverPassword';
+import ResetPassword from './src/screens/ResetPassword';
 
 const App: React.FC = () => {
   return (
     <SafeAreaView>
       <StatusBar />
-      <RecoverPassword />
+      <ResetPassword />
     </SafeAreaView>
   );
 };

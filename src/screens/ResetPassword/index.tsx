@@ -8,7 +8,6 @@ import {
   TitleView,
   Form,
   InputMargin,
-  ButtonMargin,
 } from './styles';
 
 import Title from '../../components/Title';
@@ -16,7 +15,7 @@ import Subtitle from '../../components/Subtitle';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-const RecoverPassword: React.FC = () => {
+const ResetPassword: React.FC = () => {
   return (
     <KeyboardAvoidingView>
       <Container>
@@ -25,25 +24,25 @@ const RecoverPassword: React.FC = () => {
 
           <TitleView>
             <Title>
-              Recuperação
+              Alteração
               {'\n'}
               de Senha
             </Title>
             <Subtitle>
-              Vamos te enviar um email para
-              {'\n'}
-              você alterar sua senha
+              Informe sua nova senha
             </Subtitle>
           </TitleView>
 
           <Form>
             <InputMargin>
-              <Input iconName="at-sign" placeholder="Informe seu e-mail" keyboardType="email-address" />
+              <Input iconName="lock" placeholder="Informe sua nova senha" secureTextEntry />
             </InputMargin>
 
-            <ButtonMargin>
-              <Button text="Enviar" />
-            </ButtonMargin>
+            <InputMargin>
+              <Input iconName="lock" placeholder="Confirme sua nova senha" secureTextEntry />
+            </InputMargin>
+
+            <Button text="Alterar" />
           </Form>
         </Content>
       </Container>
@@ -51,4 +50,4 @@ const RecoverPassword: React.FC = () => {
   );
 };
 
-export default RecoverPassword;
+export default ResetPassword;
