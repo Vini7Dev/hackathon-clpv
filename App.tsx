@@ -10,12 +10,13 @@ import RecoverPassword from './src/screens/RecoverPassword';
 import ResetPassword from './src/screens/ResetPassword';
 
 import Home from './src/screens/Home';
+import ChooseOccurrenceType from './src/screens/ChooseOccurrenceType';
 
 const App: React.FC = () => {
   return (
     <SafeAreaView>
       <StatusBar />
-      <Home />
+      <ChooseOccurrenceType />
     </SafeAreaView>
   );
 };

@@ -3,7 +3,8 @@ import styled from 'styled-components/native';
 import theme from '../../global/styles/theme';
 
 interface ITitle {
-  textAlign?: 'left' | 'center' | 'right';
+  textAlign: 'left' | 'center' | 'right';
+  fontSize: 40 | 30;
 }
 
 const {
@@ -17,7 +18,7 @@ const {
 export const TitleText = styled.Text<ITitle>`
   width: 100%;
   color: ${primary};
-  font-size: 40px;
   font-family: ${ubuntu_medium};
+  font-size: ${(props) => props.fontSize}px;
   text-align: ${(props) => props.textAlign};
 `;
