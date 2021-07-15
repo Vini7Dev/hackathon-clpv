@@ -4,13 +4,13 @@ import { KeyboardAvoidingView } from 'react-native';
 import {
   Container,
   Content,
-  Logo,
   TitleView,
   Form,
   InputMargin,
   ButtonMargin,
 } from './styles';
 
+import AppLogo from '../../components/AppLogo';
 import Title from '../../components/Title';
 import Subtitle from '../../components/Subtitle';
 import Input from '../../components/Input';
@@ -21,7 +21,7 @@ const RecoverPassword: React.FC = () => {
     <KeyboardAvoidingView>
       <Container>
         <Content>
-          <Logo />
+          <AppLogo />
 
           <TitleView>
             <Title>

@@ -9,19 +9,11 @@ export const Container = styled.ScrollView`
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 20px 30px 60px;
-  margin: 0;
+  padding: 20px 30px;
 `;
 
 export const Content = styled.View`
   align-items: center;
-`;
-
-export const Logo = styled.View`
-  width: 150px;
-  height: 150px;
-  border-radius: 75px;
-  background-color: #C4C4C4;
 `;
 
 export const TitleView = styled.View`

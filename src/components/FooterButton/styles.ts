@@ -15,7 +15,7 @@ export const Container = styled.TouchableHighlight`
   justify-content: center;
   border-top-width: 1px;
   border-top-color: ${primary};
-  background-color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.9);
 `;
 
 export const ButtonText = styled.Text`

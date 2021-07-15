@@ -13,7 +13,7 @@ const App: React.FC = () => {
   return (
     <SafeAreaView>
       <StatusBar />
-      <ResetPassword />
+      <Login />
     </SafeAreaView>
   );
 };

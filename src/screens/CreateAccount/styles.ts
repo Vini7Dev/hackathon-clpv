@@ -19,13 +19,6 @@ export const Content = styled.View`
   padding-bottom: 100px;
 `;
 
-export const Logo = styled.View`
-  width: 150px;
-  height: 150px;
-  border-radius: 75px;
-  background-color: #C4C4C4;
-`;
-
 export const TitleView = styled.View`
   width: 100%;
 `;

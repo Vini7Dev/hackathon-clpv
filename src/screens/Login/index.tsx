@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Keyboard, KeyboardAvoidingView } from 'react-native';
+import {
+  Keyboard, KeyboardAvoidingView, View,
+} from 'react-native';
 
 import {
   Container,
   Content,
-  Logo,
   TitleView,
   Form,
   InputMargin,
   ForgotPassword,
 } from './styles';
 
+import AppLogo from '../../components/AppLogo';
 import Title from '../../components/Title';
 import Subtitle from '../../components/Subtitle';
 import Input from '../../components/Input';
@@ -44,7 +46,7 @@ const Login: React.FC = () => {
     <KeyboardAvoidingView>
       <Container>
         <Content>
-          <Logo />
+          <AppLogo />
 
           <TitleView>
             <Title>Bem-vindo!</Title>
@@ -71,6 +73,8 @@ const Login: React.FC = () => {
             <Button text="Entrar" />
           </Form>
         </Content>
+
+        <View style={{ height: 100 }} />
       </Container>
 
       {!keyboardIsOpen && <FooterButton iconName="log-in" text="Criar uma conta" />}

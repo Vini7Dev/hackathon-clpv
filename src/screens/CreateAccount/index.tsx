@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/Feather';
 import {
   Container,
   Content,
-  Logo,
   TitleView,
   AlertView,
   AlertText,
@@ -16,6 +15,7 @@ import {
   PrimaryColorText,
 } from './styles';
 
+import AppLogo from '../../components/AppLogo';
 import Title from '../../components/Title';
 import Input from '../../components/Input';
 import Checkbox from '../../components/Checkbox';
@@ -54,7 +54,7 @@ const CreateAccount: React.FC = () => {
     <KeyboardAvoidingView>
       <Container>
         <Content>
-          <Logo />
+          <AppLogo />
 
           <TitleView>
             <Title>Cadastro</Title>
