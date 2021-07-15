@@ -3,14 +3,19 @@ import theme from '../../global/styles/theme';
 
 const {
   primary,
+  subtitle,
   text,
 } = theme.colors;
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
   width: 100%;
   height: 100%;
+  padding: 60px 30px 0;
+  margin: 0;
+`;
+
+export const Content = styled.View`
   align-items: center;
-  padding: 75px 30px;
 `;
 
 export const Logo = styled.View`
@@ -20,9 +25,7 @@ export const Logo = styled.View`
   background-color: #C4C4C4;
 `;
 
-export const TitleView = styled.View`
-
-`;
+export const TitleView = styled.View``;
 
 export const Title = styled.Text`
   color: ${primary};
@@ -44,5 +47,8 @@ export const InputMargin = styled.View`
 `;
 
 export const ForgotPassword = styled.Text`
-
+  margin: 4px 0 12px;
+  text-align: right;
+  color: ${subtitle};
+  font-size: 17px;
 `;

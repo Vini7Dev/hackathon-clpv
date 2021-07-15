@@ -1,6 +1,8 @@
 import React from 'react';
+import { KeyboardAvoidingView } from 'react-native';
 import {
   Container,
+  Content,
   Logo,
   TitleView,
   Title,
@@ -16,38 +18,42 @@ import FooterButton from '../../components/FooterButton';
 
 const Login: React.FC = () => {
   return (
-    <Container>
-      <Logo />
+    <KeyboardAvoidingView>
+      <Container>
+        <Content>
+          <Logo />
 
-      <TitleView>
-        <Title>Bem-vindo!</Title>
-        <Subtitle>
-          Precisamos de você para
-          {'\n'}
-          construirmos uma cidade melhor 😁
-        </Subtitle>
-      </TitleView>
+          <TitleView>
+            <Title>Bem-vindo!</Title>
+            <Subtitle>
+              Precisamos de você para
+              {'\n'}
+              construirmos uma cidade melhor 😁
+            </Subtitle>
+          </TitleView>
 
-      <Form>
-        <InputMargin>
-          <Input />
-        </InputMargin>
+          <Form>
+            <InputMargin>
+              <Input />
+            </InputMargin>
 
-        <InputMargin>
-          <Input />
+            <InputMargin>
+              <Input />
 
-          <ForgotPassword>
-            Esqueci minha senha
-          </ForgotPassword>
-        </InputMargin>
+              <ForgotPassword>
+                Esqueci minha senha
+              </ForgotPassword>
+            </InputMargin>
 
-        <InputMargin>
-          <Button />
-        </InputMargin>
-      </Form>
+            <InputMargin>
+              <Button />
+            </InputMargin>
+          </Form>
+        </Content>
+      </Container>
 
       <FooterButton />
-    </Container>
+    </KeyboardAvoidingView>
   );
 };
 
