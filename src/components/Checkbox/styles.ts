@@ -7,6 +7,10 @@ const {
   input_border,
 } = theme.colors;
 
+const {
+  interRegular,
+} = theme.fonts;
+
 export const Container = styled.View`
   flex-direction: row;
   align-items: center;
@@ -17,6 +21,7 @@ export const Label = styled.Text`
   color: ${text};
   text-align: right;
   font-size: 12px;
+  font-family: ${interRegular};
 `;
 
 export const CechboxElement = styled.Pressable`

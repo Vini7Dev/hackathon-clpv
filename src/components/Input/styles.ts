@@ -8,6 +8,10 @@ const {
   input_icon_background,
 } = theme.colors;
 
+const {
+  interRegular,
+} = theme.fonts;
+
 export const Container = styled.View`
   height: 50px;
   width: 100%;
@@ -30,7 +34,9 @@ export const IconView = styled.View`
 `;
 
 export const InputElement = styled.TextInput`
-  padding: 0 20px;
+  width: 100%;
+  padding: 0 68px 0 20px;
   color: ${text};
   font-size: 15px;
+  font-family: ${interRegular};
 `;

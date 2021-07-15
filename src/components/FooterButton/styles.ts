@@ -5,6 +5,10 @@ const {
   primary,
 } = theme.colors;
 
+const {
+  ubuntuMedium,
+} = theme.fonts;
+
 export const Container = styled.TouchableHighlight`
   position: absolute;
   bottom: 0px;
@@ -22,4 +26,5 @@ export const ButtonText = styled.Text`
   margin-left: 4px;
   color: ${primary};
   font-size: 22px;
+  font-family: ${ubuntuMedium};
 `;

@@ -6,6 +6,10 @@ const {
   secondary,
 } = theme.colors;
 
+const {
+  ubuntuMedium,
+} = theme.fonts;
+
 export const Container = styled.TouchableOpacity`
   width: 100%;
   height: 55px;
@@ -18,4 +22,5 @@ export const Container = styled.TouchableOpacity`
 export const ButtonText = styled.Text`
   color: #FFFFFF;
   font-size: 22px;
+  font-family: ${ubuntuMedium};
 `;

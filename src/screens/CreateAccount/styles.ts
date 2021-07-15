@@ -6,6 +6,11 @@ const {
   primary2,
 } = theme.colors;
 
+const {
+  interRegular,
+  ubuntuMedium,
+} = theme.fonts;
+
 export const Container = styled.ScrollView`
   position: relative;
   width: 100%;
@@ -30,6 +35,7 @@ export const AlertView = styled.View`
 export const AlertText = styled.Text`
   color: ${alert_dark};
   font-size: 12px;
+  font-family: ${interRegular};
   line-height: 13px;
   margin-left: 4px;
   margin-right: auto;
@@ -43,6 +49,7 @@ export const Form = styled.View`
 export const InputGroupTitle = styled.Text`
   color: ${primary2};
   font-size: 18px;
+  font-family: ${ubuntuMedium};
 `;
 
 export const InputMargin = styled.View`

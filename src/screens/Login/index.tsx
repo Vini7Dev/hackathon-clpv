@@ -14,7 +14,7 @@ import {
 
 import AppLogo from '../../components/AppLogo';
 import Title from '../../components/Title';
-import Subtitle from '../../components/Subtitle';
+import Description from '../../components/Description';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import FooterButton from '../../components/FooterButton';
@@ -50,11 +50,9 @@ const Login: React.FC = () => {
 
           <TitleView>
             <Title>Bem-vindo!</Title>
-            <Subtitle>
-              Precisamos de você para
-              {'\n'}
-              construirmos uma cidade melhor 😁
-            </Subtitle>
+            <Description>
+              Precisamos de você para construirmos uma cidade melhor 😁
+            </Description>
           </TitleView>
 
           <Form>

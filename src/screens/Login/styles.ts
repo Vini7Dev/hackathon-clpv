@@ -5,6 +5,10 @@ const {
   primary2,
 } = theme.colors;
 
+const {
+  interRegular,
+} = theme.fonts;
+
 export const Container = styled.ScrollView`
   position: relative;
   width: 100%;
@@ -34,4 +38,5 @@ export const ForgotPassword = styled.Text`
   text-align: right;
   color: ${primary2};
   font-size: 17px;
+  font-family: ${interRegular};
 `;

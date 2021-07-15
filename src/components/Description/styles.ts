@@ -6,7 +6,12 @@ const {
   text,
 } = theme.colors;
 
-export const SubtitleText = styled.Text`
+const {
+  interRegular,
+} = theme.fonts;
+
+export const DescriptionText = styled.Text`
   color: ${text};
   font-size: 20px;
+  font-family: ${interRegular};
 `;

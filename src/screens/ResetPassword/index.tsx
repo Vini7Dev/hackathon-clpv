@@ -11,7 +11,7 @@ import {
 
 import AppLogo from '../../components/AppLogo';
 import Title from '../../components/Title';
-import Subtitle from '../../components/Subtitle';
+import Description from '../../components/Description';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
@@ -28,9 +28,9 @@ const ResetPassword: React.FC = () => {
               {'\n'}
               de Senha
             </Title>
-            <Subtitle>
+            <Description>
               Informe sua nova senha
-            </Subtitle>
+            </Description>
           </TitleView>
 
           <Form>

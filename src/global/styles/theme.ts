@@ -14,6 +14,16 @@ const theme = {
     input_border: '#B6B2B3',
     input_icon_background: '#F3F3F3',
   },
+
+  fonts: {
+    interExtraBold: 'Inter-ExtraBold',
+    interMedium: 'Inter-Medium',
+    interRegular: 'Inter-Regular',
+    poppinsRegular: 'Poppins-Regular',
+    poppinsSemiBold: 'Poppins-SemiBold',
+    ubuntuMedium: 'Ubuntu-Medium',
+    ubuntuRegular: 'Ubuntu-Regular',
+  },
 };
 
 export default theme;
