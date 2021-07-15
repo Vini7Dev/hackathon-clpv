@@ -1,5 +1,6 @@
-import React from 'react';
-import { KeyboardAvoidingView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Keyboard, KeyboardAvoidingView } from 'react-native';
+
 import {
   Container,
   Content,
@@ -17,6 +18,28 @@ import Button from '../../components/Button';
 import FooterButton from '../../components/FooterButton';
 
 const Login: React.FC = () => {
+  const [keyboardIsOpen, setKeyboardIsOpen] = useState(false);
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        setKeyboardIsOpen(true);
+      },
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setKeyboardIsOpen(false);
+      },
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
+
   return (
     <KeyboardAvoidingView>
       <Container>
@@ -52,7 +75,7 @@ const Login: React.FC = () => {
         </Content>
       </Container>
 
-      <FooterButton />
+      {!keyboardIsOpen && <FooterButton />}
     </KeyboardAvoidingView>
   );
 };

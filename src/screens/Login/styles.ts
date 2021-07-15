@@ -8,9 +8,10 @@ const {
 } = theme.colors;
 
 export const Container = styled.ScrollView`
+  position: relative;
   width: 100%;
   height: 100%;
-  padding: 60px 30px 0;
+  padding: 20px 30px 60px;
   margin: 0;
 `;
 
