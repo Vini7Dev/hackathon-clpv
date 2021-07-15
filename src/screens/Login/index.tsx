@@ -1,11 +1,53 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import {
+  Container,
+  Logo,
+  TitleView,
+  Title,
+  Subtitle,
+  Form,
+  InputMargin,
+  ForgotPassword,
+} from './styles';
+
+import Input from '../../components/Input';
+import Button from '../../components/Button';
+import FooterButton from '../../components/FooterButton';
 
 const Login: React.FC = () => {
   return (
-    <View>
-      <Text>Hello World!</Text>
-    </View>
+    <Container>
+      <Logo />
+
+      <TitleView>
+        <Title>Bem-vindo!</Title>
+        <Subtitle>
+          Precisamos de você para
+          {'\n'}
+          construirmos uma cidade melhor 😁
+        </Subtitle>
+      </TitleView>
+
+      <Form>
+        <InputMargin>
+          <Input />
+        </InputMargin>
+
+        <InputMargin>
+          <Input />
+
+          <ForgotPassword>
+            Esqueci minha senha
+          </ForgotPassword>
+        </InputMargin>
+
+        <InputMargin>
+          <Button />
+        </InputMargin>
+      </Form>
+
+      <FooterButton />
+    </Container>
   );
 };
 
