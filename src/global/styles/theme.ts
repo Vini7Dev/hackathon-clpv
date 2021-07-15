@@ -1,9 +1,9 @@
 const theme = {
   colors: {
     primary: '#265AB3',
+    primary2: '#19438B',
     secondary: '#FFB200',
 
-    subtitle: '#19438B',
     info: '#0324B3',
 
     danger: '#CA1D23',

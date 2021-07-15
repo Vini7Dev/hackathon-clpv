@@ -10,18 +10,19 @@ import {
 
 interface IFooterButton extends TouchableOpacityProps {
   iconName: string;
+  text: string;
 }
 
 const { primary } = theme.colors;
 
-const FooterButton: React.FC<IFooterButton> = ({ iconName, ...rest }) => {
+const FooterButton: React.FC<IFooterButton> = ({ iconName, text, ...rest }) => {
   return (
     <Container activeOpacity={0.7} {...rest}>
       <>
         <Icon name={iconName} color={primary} size={24} />
 
         <ButtonText>
-          Criar uma conta
+          {text}
         </ButtonText>
       </>
     </Container>

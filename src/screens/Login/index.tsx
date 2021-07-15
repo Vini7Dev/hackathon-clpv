@@ -6,13 +6,13 @@ import {
   Content,
   Logo,
   TitleView,
-  Title,
-  Subtitle,
   Form,
   InputMargin,
   ForgotPassword,
 } from './styles';
 
+import Title from '../../components/Title';
+import Subtitle from '../../components/Subtitle';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import FooterButton from '../../components/FooterButton';
@@ -68,14 +68,12 @@ const Login: React.FC = () => {
               </ForgotPassword>
             </InputMargin>
 
-            <InputMargin>
-              <Button />
-            </InputMargin>
+            <Button text="Entrar" />
           </Form>
         </Content>
       </Container>
 
-      {!keyboardIsOpen && <FooterButton iconName="log-in" />}
+      {!keyboardIsOpen && <FooterButton iconName="log-in" text="Criar uma conta" />}
     </KeyboardAvoidingView>
   );
 };

@@ -5,8 +5,9 @@ import {
 } from 'react-native';
 
 import Login from './src/screens/Login';
+import CreateAccount from './src/screens/CreateAccount';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <SafeAreaView>
       <StatusBar />

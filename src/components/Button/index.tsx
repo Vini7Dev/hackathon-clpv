@@ -6,11 +6,15 @@ import {
   ButtonText,
 } from './styles';
 
-const Button: React.FC<TouchableOpacityProps> = ({ ...rest }) => {
+interface IButtonProps extends TouchableOpacityProps {
+  text: string;
+}
+
+const Button: React.FC<IButtonProps> = ({ text, ...rest }) => {
   return (
     <Container activeOpacity={0.7} {...rest}>
       <ButtonText>
-        Entrar
+        {text}
       </ButtonText>
     </Container>
   );
