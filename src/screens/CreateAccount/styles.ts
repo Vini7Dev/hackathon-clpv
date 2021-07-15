@@ -7,8 +7,8 @@ const {
 } = theme.colors;
 
 const {
-  interRegular,
-  ubuntuMedium,
+  inter_regular,
+  ubuntu_medium,
 } = theme.fonts;
 
 export const Container = styled.ScrollView`
@@ -34,7 +34,7 @@ export const AlertView = styled.View`
 export const AlertText = styled.Text`
   color: ${alert_dark};
   font-size: 12px;
-  font-family: ${interRegular};
+  font-family: ${inter_regular};
   line-height: 13px;
   margin-left: 4px;
   margin-right: auto;
@@ -48,7 +48,7 @@ export const Form = styled.View`
 export const InputGroupTitle = styled.Text`
   color: ${primary2};
   font-size: 18px;
-  font-family: ${ubuntuMedium};
+  font-family: ${ubuntu_medium};
 `;
 
 export const InputMargin = styled.View`

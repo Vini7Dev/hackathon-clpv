@@ -4,9 +4,13 @@ import {
   TitleText,
 } from './styles';
 
-const Title: React.FC = ({ children }) => {
+interface ITitle {
+  textAlign?: 'left' | 'center' | 'right';
+}
+
+const Title: React.FC<ITitle> = ({ textAlign = 'left', children }) => {
   return (
-    <TitleText>
+    <TitleText textAlign={textAlign}>
       {children}
     </TitleText>
   );

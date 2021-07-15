@@ -13,6 +13,7 @@ const theme = {
     text: '#6F6F6F',
     text_dark: '#525252',
     input_border: '#B6B2B3',
+    input_border2: '#DEE2E6',
     input_icon_background: '#F3F3F3',
   },
 

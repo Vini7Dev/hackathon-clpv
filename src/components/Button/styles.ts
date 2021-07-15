@@ -2,6 +2,10 @@ import styled from 'styled-components/native';
 
 import theme from '../../global/styles/theme';
 
+interface IButton {
+  hSize: 'normal' | 'large';
+}
+
 const {
   secondary,
 } = theme.colors;
@@ -10,9 +14,9 @@ const {
   ubuntu_medium,
 } = theme.fonts;
 
-export const Container = styled.TouchableOpacity`
+export const Container = styled.TouchableOpacity<IButton>`
   width: 100%;
-  height: 55px;
+  height: ${(props) => (props.hSize === 'normal' ? 55 : 72)}px;
   background-color: ${secondary};
   border-radius: 10px;
   align-items: center;
