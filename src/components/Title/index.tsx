@@ -5,13 +5,20 @@ import {
 } from './styles';
 
 interface ITitle {
+  color?: 'primary' | 'alert_light';
   textAlign?: 'left' | 'center' | 'right';
-  fontSize?: 40 | 30;
+  fontSize?: 40 | 35 | 30;
 }
 
-const Title: React.FC<ITitle> = ({ textAlign = 'left', fontSize = 40, children }) => {
+const Title: React.FC<ITitle> = ({
+  color = 'primary', textAlign = 'left', fontSize = 40, children,
+}) => {
   return (
-    <TitleText textAlign={textAlign} fontSize={fontSize}>
+    <TitleText
+      color={color}
+      textAlign={textAlign}
+      fontSize={fontSize}
+    >
       {children}
     </TitleText>
   );

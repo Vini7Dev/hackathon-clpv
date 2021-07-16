@@ -15,6 +15,8 @@ const theme = {
     input_border: '#B6B2B3',
     input_border2: '#DEE2E6',
     input_icon_background: '#F3F3F3',
+
+    gray_transparent: 'rgba(196, 196, 196, 0.25)',
   },
 
   fonts: {

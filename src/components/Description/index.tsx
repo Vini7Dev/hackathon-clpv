@@ -5,7 +5,7 @@ import {
 } from './styles';
 
 interface IDescription {
-  color?: 'text' | 'alert_dark';
+  color?: 'text' | 'alert_dark' | 'primary2';
   textAlign?: 'left' | 'center' | 'right';
   fontSize?: number;
 }

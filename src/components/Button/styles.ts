@@ -19,6 +19,7 @@ export const Container = styled.TouchableOpacity<IButton>`
   height: ${(props) => (props.hSize === 'normal' ? 55 : 72)}px;
   background-color: ${secondary};
   border-radius: 10px;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 `;

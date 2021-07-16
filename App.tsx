@@ -11,12 +11,17 @@ import ResetPassword from './src/screens/ResetPassword';
 
 import Home from './src/screens/Home';
 import ChooseOccurrenceType from './src/screens/ChooseOccurrenceType';
+import RegisterOccurrence from './src/screens/RegisterOccurrence';
 
 const App: React.FC = () => {
   return (
     <SafeAreaView>
-      <StatusBar />
-      <ChooseOccurrenceType />
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="rgba(0, 0, 0, 0)"
+      />
+
+      <RegisterOccurrence />
     </SafeAreaView>
   );
 };
