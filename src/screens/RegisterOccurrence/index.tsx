@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { KeyboardAvoidingView, View, Text } from 'react-native';
+import React, { useCallback, useState } from 'react';
+import { KeyboardAvoidingView } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-
 import MapView, {
   Marker,
   PROVIDER_GOOGLE,
@@ -9,7 +8,6 @@ import MapView, {
 } from 'react-native-maps';
 
 import { fetchLocalMapBox } from '../../scripts/apiMapBox';
-
 import {
   Container,
   Content,
@@ -34,6 +32,7 @@ import Title from '../../components/Title';
 import Description from '../../components/Description';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+import SelectOptions, { IOptionData } from '../../components/SelectOptions';
 import DateTimeInput from '../../components/DateTimeInput';
 // import PhotoItem from '../../components/PhotoItem';
 
@@ -42,12 +41,60 @@ const {
 } = theme.colors;
 
 const RegisterOccurrence: React.FC = () => {
+  const [addressSuggestionsIsOpen, setAddressSuggestionsIsOpen] = useState(false);
+  const [locationOptions, setLocationOptions] = useState<IOptionData[]>([]);
   const [startMapPosition, setStartMapPosition] = useState<Region>({
     latitude: -20.5393727,
     longitude: -47.4018742,
-    latitudeDelta: 0.01,
-    longitudeDelta: 0.01,
+    latitudeDelta: 0.1,
+    longitudeDelta: 0.1,
   });
+  const [selectedAddress, setSelectedAddress] = useState<IOptionData>();
+
+  const handleOnSelectAddress = useCallback((address: IOptionData) => {
+    setSelectedAddress(address);
+
+    setAddressSuggestionsIsOpen(false);
+
+    setStartMapPosition({
+      latitude: address.coords.lat,
+      longitude: address.coords.long,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01,
+    });
+  }, []);
+
+  const handleSearchStreet = useCallback(async (text: string) => {
+    if (text.length <= 5) return;
+
+    const result = await fetchLocalMapBox(text);
+
+    if (result.type === 'error') {
+      console.log(result.error);
+      return;
+    }
+
+    const resultAddressType = result.features.filter(
+      (address: { place_type: string; }) => address.place_type[0] === 'address',
+    );
+
+    const cityAddress = resultAddressType.filter(
+      (address: { place_name: string }) => address.place_name.indexOf('Franca - São Paulo,') !== -1,
+    );
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const addressSuggestions = cityAddress.map((address: any) => ({
+      id: address.id,
+      label: address.text,
+      value: address.place_name,
+      coords: {
+        lat: address.geometry.coordinates[1],
+        long: address.geometry.coordinates[0],
+      },
+    }));
+
+    setLocationOptions(addressSuggestions);
+  }, []);
 
   return (
     <Container>
@@ -200,8 +247,26 @@ const RegisterOccurrence: React.FC = () => {
 
             <InputGroupMargin>
               <InputMargin>
-                <Input iconName="map-pin" placeholder="Informe a localização do ocorrido" />
+                <Input
+                  iconName="map-pin"
+                  placeholder="Informe a localização do ocorrido"
+                  onChangeText={handleSearchStreet}
+                  onFocus={() => setAddressSuggestionsIsOpen(true)}
+                />
+
+                { addressSuggestionsIsOpen && (
+                  <SelectOptions
+                    options={locationOptions}
+                    onSelectOption={handleOnSelectAddress}
+                    onClose={() => setAddressSuggestionsIsOpen(false)}
+                  />
+                )}
               </InputMargin>
+
+              <InputMargin>
+                <Input iconName="home" placeholder="Informe o número do local" keyboardType="numeric" />
+              </InputMargin>
+
               <InputMargin>
                 <Input iconName="info" placeholder="Informe um ponto de referência" />
               </InputMargin>
@@ -221,15 +286,25 @@ const RegisterOccurrence: React.FC = () => {
                     borderRadius: 8,
                   }}
                   provider={PROVIDER_GOOGLE}
-                  region={startMapPosition}
+                  region={{
+                    latitude: startMapPosition.latitude,
+                    longitude: startMapPosition.longitude,
+                    latitudeDelta: startMapPosition.latitudeDelta,
+                    longitudeDelta: startMapPosition.longitudeDelta,
+                  }}
                   initialRegion={startMapPosition}
                 >
-                  <Marker
-                    coordinate={{
-                      latitude: startMapPosition.latitude,
-                      longitude: startMapPosition.longitude,
-                    }}
-                  />
+                  {
+                    selectedAddress
+                    && (
+                    <Marker
+                      coordinate={{
+                        latitude: selectedAddress.coords.lat,
+                        longitude: selectedAddress.coords.long,
+                      }}
+                    />
+                    )
+                  }
                 </MapView>
               </MapArea>
             </InputGroupMargin>
