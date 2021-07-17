@@ -146,4 +146,6 @@ export const MapArea = styled.View`
   border-width: 1px;
   border-color: ${input_border};
   background-color: rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  align-items: center;
 `;

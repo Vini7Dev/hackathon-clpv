@@ -1,6 +1,14 @@
-import React from 'react';
-import { KeyboardAvoidingView } from 'react-native';
+import React, { useState } from 'react';
+import { KeyboardAvoidingView, View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
+
+import MapView, {
+  Marker,
+  PROVIDER_GOOGLE,
+  Region,
+} from 'react-native-maps';
+
+import { fetchLocalMapBox } from '../../scripts/apiMapBox';
 
 import {
   Container,
@@ -34,6 +42,13 @@ const {
 } = theme.colors;
 
 const RegisterOccurrence: React.FC = () => {
+  const [startMapPosition, setStartMapPosition] = useState<Region>({
+    latitude: -20.5393727,
+    longitude: -47.4018742,
+    latitudeDelta: 0.01,
+    longitudeDelta: 0.01,
+  });
+
   return (
     <Container>
       <KeyboardAvoidingView>
@@ -198,7 +213,25 @@ const RegisterOccurrence: React.FC = () => {
                 Veja no mapa o local selecionado
               </Description>
 
-              <MapArea />
+              <MapArea>
+                <MapView
+                  style={{
+                    width: '95%',
+                    height: '95%',
+                    borderRadius: 8,
+                  }}
+                  provider={PROVIDER_GOOGLE}
+                  region={startMapPosition}
+                  initialRegion={startMapPosition}
+                >
+                  <Marker
+                    coordinate={{
+                      latitude: startMapPosition.latitude,
+                      longitude: startMapPosition.longitude,
+                    }}
+                  />
+                </MapView>
+              </MapArea>
             </InputGroupMargin>
           </Section>
 
