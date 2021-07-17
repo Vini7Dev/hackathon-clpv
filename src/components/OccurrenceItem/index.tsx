@@ -1,4 +1,5 @@
 import React from 'react';
+import { TouchableOpacityProps } from 'react-native';
 
 import {
   Container,
@@ -8,9 +9,20 @@ import {
   BodyText,
 } from './styles';
 
-const OccurrenceItem: React.FC = () => {
+interface IOccurrenceItem extends TouchableOpacityProps {
+  code: string;
+  status: string;
+  infraction_notice: string;
+}
+
+const OccurrenceItem: React.FC<IOccurrenceItem> = ({
+  code,
+  status,
+  infraction_notice,
+  ...rest
+}) => {
   return (
-    <Container>
+    <Container activeOpacity={0.8} {...rest}>
       <ItemHeaderRow>
         <HeaderTitle style={{ flex: 1 }}>
           Código
@@ -25,13 +37,13 @@ const OccurrenceItem: React.FC = () => {
 
       <ItemBodyRow>
         <BodyText style={{ flex: 1 }}>
-          #003
+          {code}
         </BodyText>
         <BodyText style={{ flex: 2 }}>
-          Registro do auto de infração - AI
+          {status}
         </BodyText>
         <BodyText style={{ flex: 1 }}>
-          003
+          {infraction_notice}
         </BodyText>
       </ItemBodyRow>
     </Container>

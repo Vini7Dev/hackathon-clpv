@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Keyboard, KeyboardAvoidingView } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   Container,
@@ -28,7 +29,13 @@ const {
 } = theme.colors;
 
 const CreateAccount: React.FC = () => {
+  const navigation = useNavigation();
+
   const [keyboardIsOpen, setKeyboardIsOpen] = useState(false);
+
+  const goBackToLoginScreen = useCallback(() => {
+    navigation.goBack();
+  }, [navigation]);
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
@@ -117,7 +124,16 @@ const CreateAccount: React.FC = () => {
         </Content>
       </Container>
 
-      {!keyboardIsOpen && <FooterButton iconName="arrow-left" text="Entre com sua conta" />}
+      {
+        !keyboardIsOpen
+        && (
+        <FooterButton
+          iconName="arrow-left"
+          text="Entre com sua conta"
+          onPress={goBackToLoginScreen}
+        />
+        )
+      }
     </KeyboardAvoidingView>
   );
 };

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
 
 import {
@@ -13,6 +14,15 @@ import {
 } from './styles';
 
 const Header: React.FC = () => {
+  const navigation = useNavigation();
+
+  const logout = useCallback(() => {
+    navigation.reset({
+      routes: [{ name: 'Login' }],
+      index: 0,
+    });
+  }, [navigation]);
+
   return (
     <Container>
       <AppLogo />
@@ -26,7 +36,7 @@ const Header: React.FC = () => {
         <Greetings>Tenha um bom dia!</Greetings>
       </GreetingsArea>
 
-      <LogoutButton activeOpacity={0.7}>
+      <LogoutButton activeOpacity={0.7} onPress={logout}>
         <Icon name="log-out" color="#FFFFFF" size={24} />
       </LogoutButton>
     </Container>

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   Container,
@@ -16,12 +17,21 @@ import Button from '../../components/Button';
 import OccurrenceItem from '../../components/OccurrenceItem';
 
 const Home: React.FC = () => {
+  const navigation = useNavigation();
+
+  const goToChooseOccurrenceTypeScreen = useCallback(() => {
+    navigation.navigate('ChooseOccurrenceType');
+  }, [navigation]);
+
+  const goToViewOccurrenceScreen = useCallback((id: string) => {
+    navigation.navigate('ViewOccurrence', { id });
+  }, [navigation]);
+
   return (
     <Container>
       <Header />
 
       <Content>
-
         <Title textAlign="center">
           Registre uma
           {'\n'}
@@ -39,6 +49,7 @@ const Home: React.FC = () => {
             style={{ marginTop: 4 }}
             text={'Regstrar\nOcorrência'}
             hSize="large"
+            onPress={goToChooseOccurrenceTypeScreen}
           />
         </RegisterOccurrenceBtnArea>
 
@@ -54,9 +65,26 @@ const Home: React.FC = () => {
           </TotalText>
 
           <OccurrencesTable>
-            <OccurrenceItem />
-            <OccurrenceItem />
-            <OccurrenceItem />
+            <OccurrenceItem
+              code="#003"
+              status="Registro do auto de infração - AI"
+              infraction_notice="003"
+              onPress={() => goToViewOccurrenceScreen('2')}
+            />
+
+            <OccurrenceItem
+              code="#002"
+              status="Registro do auto de infração - AI"
+              infraction_notice="002"
+              onPress={() => goToViewOccurrenceScreen('1')}
+            />
+
+            <OccurrenceItem
+              code="#001"
+              status="Registro do auto de infração - AI"
+              infraction_notice="001"
+              onPress={() => goToViewOccurrenceScreen('0')}
+            />
           </OccurrencesTable>
         </OccurrencesTableArea>
       </Content>

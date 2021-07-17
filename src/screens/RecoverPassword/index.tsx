@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   Container,
@@ -17,6 +18,12 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 
 const RecoverPassword: React.FC = () => {
+  const navigation = useNavigation();
+
+  const goToResetPasswordScreen = useCallback(() => {
+    navigation.navigate('ResetPassword');
+  }, [navigation]);
+
   return (
     <KeyboardAvoidingView>
       <Container>
@@ -42,7 +49,7 @@ const RecoverPassword: React.FC = () => {
             </InputMargin>
 
             <ButtonMargin>
-              <Button text="Enviar" />
+              <Button text="Enviar" onPress={goToResetPasswordScreen} />
             </ButtonMargin>
           </Form>
         </Content>

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   Keyboard, KeyboardAvoidingView, View,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   Container,
@@ -20,7 +21,21 @@ import Button from '../../components/Button';
 import FooterButton from '../../components/FooterButton';
 
 const Login: React.FC = () => {
+  const navigation = useNavigation();
+
   const [keyboardIsOpen, setKeyboardIsOpen] = useState(false);
+
+  const goToHomeScreen = useCallback(() => {
+    navigation.navigate('Home');
+  }, [navigation]);
+
+  const goToCreateAccountScreen = useCallback(() => {
+    navigation.navigate('CreateAccount');
+  }, [navigation]);
+
+  const goToRecoverPasswordScreen = useCallback(() => {
+    navigation.navigate('RecoverPassword');
+  }, [navigation]);
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
@@ -63,19 +78,28 @@ const Login: React.FC = () => {
             <InputMargin>
               <Input iconName="lock" placeholder="*******" secureTextEntry />
 
-              <ForgotPassword>
+              <ForgotPassword onPress={goToRecoverPasswordScreen}>
                 Esqueci minha senha
               </ForgotPassword>
             </InputMargin>
 
-            <Button text="Entrar" />
+            <Button text="Entrar" onPress={goToHomeScreen} />
           </Form>
         </Content>
 
         <View style={{ height: 100 }} />
       </Container>
 
-      {!keyboardIsOpen && <FooterButton iconName="log-in" text="Criar uma conta" />}
+      {
+        !keyboardIsOpen
+          && (
+          <FooterButton
+            iconName="log-in"
+            text="Criar uma conta"
+            onPress={goToCreateAccountScreen}
+          />
+          )
+      }
     </KeyboardAvoidingView>
   );
 };

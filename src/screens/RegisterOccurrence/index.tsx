@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
 import MapView, {
   Marker,
@@ -41,6 +42,7 @@ const {
 } = theme.colors;
 
 const RegisterOccurrence: React.FC = () => {
+  const navigation = useNavigation();
   const [addressSuggestionsIsOpen, setAddressSuggestionsIsOpen] = useState(false);
   const [locationOptions, setLocationOptions] = useState<IOptionData[]>([]);
   const [startMapPosition, setStartMapPosition] = useState<Region>({
@@ -50,6 +52,13 @@ const RegisterOccurrence: React.FC = () => {
     longitudeDelta: 0.1,
   });
   const [selectedAddress, setSelectedAddress] = useState<IOptionData>();
+
+  const goToHomeScreen = useCallback(() => {
+    navigation.reset({
+      routes: [{ name: 'Home' }],
+      index: 0,
+    });
+  }, [navigation]);
 
   const handleOnSelectAddress = useCallback((address: IOptionData) => {
     setSelectedAddress(address);
@@ -310,7 +319,7 @@ const RegisterOccurrence: React.FC = () => {
             </InputGroupMargin>
           </Section>
 
-          <Button text="Registrar Ocorrência" />
+          <Button text="Registrar Ocorrência" onPress={goToHomeScreen} />
         </Content>
       </KeyboardAvoidingView>
     </Container>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageSourcePropType } from 'react-native';
+import { ImageSourcePropType, TouchableOpacityProps } from 'react-native';
 
 import {
   Cotainer,
@@ -7,14 +7,14 @@ import {
   Description,
 } from './styles';
 
-interface IProblemTypeItem {
+interface IProblemTypeItem extends TouchableOpacityProps {
   image: ImageSourcePropType;
   description: string;
 }
 
-const ProblemTypeItem: React.FC<IProblemTypeItem> = ({ image, description }) => {
+const ProblemTypeItem: React.FC<IProblemTypeItem> = ({ image, description, ...rest }) => {
   return (
-    <Cotainer activeOpacity={0.8}>
+    <Cotainer activeOpacity={0.8} {...rest}>
       <Image source={image} />
       <Description>
         {description}

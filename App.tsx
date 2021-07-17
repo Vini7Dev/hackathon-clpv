@@ -1,29 +1,22 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import {
-  SafeAreaView,
   StatusBar,
 } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
-import Login from './src/screens/Login';
-import CreateAccount from './src/screens/CreateAccount';
-import RecoverPassword from './src/screens/RecoverPassword';
-import ResetPassword from './src/screens/ResetPassword';
-
-import Home from './src/screens/Home';
-import ChooseOccurrenceType from './src/screens/ChooseOccurrenceType';
-import RegisterOccurrence from './src/screens/RegisterOccurrence';
-import ViewOccurrence from './src/screens/ViewOccurrence';
+import AppRoutes from './src/routes';
 
 const App: React.FC = () => {
   return (
-    <SafeAreaView>
+    <NavigationContainer>
       <StatusBar
         barStyle="dark-content"
         backgroundColor="rgba(0, 0, 0, 0)"
       />
 
-      <ViewOccurrence />
-    </SafeAreaView>
+      <AppRoutes />
+    </NavigationContainer>
   );
 };
 

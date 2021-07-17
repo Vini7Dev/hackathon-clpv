@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   Container,
@@ -21,6 +22,12 @@ import Description from '../../components/Description';
 import ProblemTypeItem from '../../components/ProblemTypeItem';
 
 const ChooseOccurrenceType: React.FC = () => {
+  const navigation = useNavigation();
+
+  const goToRegisterOccurrenceScreen = useCallback((type_id: number) => {
+    navigation.navigate('RegisterOccurrence', { type_id });
+  }, [navigation]);
+
   return (
     <Container>
       <Header />
@@ -54,26 +61,32 @@ const ChooseOccurrenceType: React.FC = () => {
             <ProblemTypeItem
               image={DescarteResiduosPNG}
               description={'Descarte irregular\nde resíduos'}
+              onPress={() => goToRegisterOccurrenceScreen(0)}
             />
             <ProblemTypeItem
               image={DesmatamentoPNG}
               description="Desmatamento"
+              onPress={() => goToRegisterOccurrenceScreen(1)}
             />
             <ProblemTypeItem
               image={LoteamentoIrregularPNG}
               description={'Loteamento\nIrregular'}
+              onPress={() => goToRegisterOccurrenceScreen(2)}
             />
             <ProblemTypeItem
               image={UsoIndevidoAreaPublicaPNG}
               description={'Uso Indevido de\nÁrea Pública'}
+              onPress={() => goToRegisterOccurrenceScreen(3)}
             />
             <ProblemTypeItem
               image={MausTratosPNG}
               description={'Maus Tratos Contra\nAnimais'}
+              onPress={() => goToRegisterOccurrenceScreen(4)}
             />
             <ProblemTypeItem
               image={AbandonoAnimaisPNG}
               description={'Abandono de\nAnimas'}
+              onPress={() => goToRegisterOccurrenceScreen(5)}
             />
           </ProblemTypeList>
         </ProblemTypeArea>

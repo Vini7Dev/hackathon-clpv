@@ -13,7 +13,7 @@ const {
   inter_medium,
 } = theme.fonts;
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
   border-radius: 8px;
   padding: 5px 10px;
   margin-bottom: 10px;
