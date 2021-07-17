@@ -12,6 +12,7 @@ import ResetPassword from './src/screens/ResetPassword';
 import Home from './src/screens/Home';
 import ChooseOccurrenceType from './src/screens/ChooseOccurrenceType';
 import RegisterOccurrence from './src/screens/RegisterOccurrence';
+import ViewOccurrence from './src/screens/ViewOccurrence';
 
 const App: React.FC = () => {
   return (
@@ -21,7 +22,7 @@ const App: React.FC = () => {
         backgroundColor="rgba(0, 0, 0, 0)"
       />
 
-      <RegisterOccurrence />
+      <ViewOccurrence />
     </SafeAreaView>
   );
 };
