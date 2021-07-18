@@ -17,6 +17,7 @@ import {
   PrimaryColorText,
 } from './styles';
 
+import ModalView from '../../components/ModalView';
 import AppLogo from '../../components/AppLogo';
 import Title from '../../components/Title';
 import Input from '../../components/Input';
@@ -33,6 +34,7 @@ const CreateAccount: React.FC = () => {
   const navigation = useNavigation();
 
   const [keyboardIsOpen, setKeyboardIsOpen] = useState(false);
+  const [modalIsVisible, setModalIsVisible] = useState(false);
 
   const [name, setName] = useState('');
   const [cpf, setCpf] = useState('');
@@ -45,6 +47,14 @@ const CreateAccount: React.FC = () => {
   const goBackToLoginScreen = useCallback(() => {
     navigation.goBack();
   }, [navigation]);
+
+  const handleCloseModal = useCallback(() => {
+    setModalIsVisible(false);
+  }, []);
+
+  const handleOpenModal = useCallback(() => {
+    setModalIsVisible(true);
+  }, []);
 
   const handleSubmitForm = useCallback(async () => {
     try {
@@ -180,6 +190,7 @@ const CreateAccount: React.FC = () => {
               <Checkbox
                 isChecked={termsConfirmation}
                 toggleIsChecked={() => setTermsConfirmation(!termsConfirmation)}
+                onPressInLabel={handleOpenModal}
               >
                 Eu li e concordo com os
                 {' '}
@@ -205,6 +216,17 @@ const CreateAccount: React.FC = () => {
           iconName="arrow-left"
           text="Entre com sua conta"
           onPress={goBackToLoginScreen}
+        />
+        )
+      }
+
+      {
+        modalIsVisible && (
+        <ModalView
+          visible={modalIsVisible}
+          title="Termos de Uso e Política de Privacidade"
+          message="Por conta da nova Lei Geral de Proteção de Dados (Lei 13.709/2018) ou LGPD, que tem como objetivo reforçar a responsabilidade e a transparência no tratamento dos seus dados pessoais (nome completo, endereço, CPF, email, número de whatsapp), gostaríamos de pedir o seu consentimento para armazená-los e utilizá-los com toda segurança e privacidade."
+          onCloseModal={handleCloseModal}
         />
         )
       }

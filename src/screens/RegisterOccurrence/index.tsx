@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { Alert, KeyboardAvoidingView } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { launchImageLibrary, Asset } from 'react-native-image-picker';
@@ -41,6 +41,7 @@ import DateTimeInput from '../../components/DateTimeInput';
 import PhotoItem from '../../components/PhotoItem';
 
 import { formatDate, formatTime, IDatePickerEvent } from '../../utils/formatDateTime';
+import ModalView from '../../components/ModalView';
 
 interface IRouteParams {
   problem_type_id: number;
@@ -64,6 +65,10 @@ const RegisterOccurrence: React.FC = () => {
     longitudeDelta: 0.1,
   });
 
+  const [modalIsVisible, setModalIsVisible] = useState(false);
+  const [modalTitle, setModalTitle] = useState('');
+  const [modalMessage, setModalMessage] = useState('');
+
   const [problemTypeId, setProblemTypeId] = useState(problem_type_id);
   const [images, setImages] = useState<Asset[]>([]);
   const [observations, setObservations] = useState('');
@@ -81,6 +86,10 @@ const RegisterOccurrence: React.FC = () => {
       index: 0,
     });
   }, [navigation]);
+
+  const handleCloseModal = useCallback(() => {
+    setModalIsVisible(false);
+  }, []);
 
   const handleDeleteSelectedImage = useCallback((index: number) => {
     const newImagesArray = images;
@@ -242,6 +251,14 @@ const RegisterOccurrence: React.FC = () => {
 
     setTime(formatedTime);
   }, []);
+
+  useEffect(() => {
+    if (problemTypeId === 0) {
+      setModalTitle('Identifique o possível infrator!');
+      setModalMessage('Lembre-se de identificar o possível infrator por meio das observações e adicionando novas fotos, apresentando detalhes do automóvel (como a placa, a marca, entre outros), empresa envolvida, vizinho do responsável pelo ato, ou qualquer outra forma de identificação do indivíduo.\n\nQuanto mais detalhes tivermos do ocorrido, maior é a certeza da resolução correta do caso!');
+      setModalIsVisible(true);
+    }
+  }, [problemTypeId]);
 
   return (
     <Container>
@@ -501,6 +518,17 @@ const RegisterOccurrence: React.FC = () => {
           <Button text="Registrar Ocorrência" onPress={handleSubmitForm} />
         </Content>
       </KeyboardAvoidingView>
+
+      {
+        modalIsVisible && (
+        <ModalView
+          visible={modalIsVisible}
+          title={modalTitle}
+          message={modalMessage}
+          onCloseModal={handleCloseModal}
+        />
+        )
+      }
     </Container>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { PressableProps } from 'react-native';
+import { Pressable, PressableProps } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
 import {
@@ -11,16 +11,19 @@ import {
 interface ICheckbox extends PressableProps {
   isChecked: boolean;
   toggleIsChecked(): void;
+  onPressInLabel(): void;
 }
 
 const Checkbox: React.FC<ICheckbox> = ({
-  isChecked, toggleIsChecked, children, ...rest
+  isChecked, toggleIsChecked, onPressInLabel, children, ...rest
 }) => {
   return (
     <Container>
-      <Label>
-        {children}
-      </Label>
+      <Pressable onPress={onPressInLabel}>
+        <Label>
+          {children}
+        </Label>
+      </Pressable>
 
       <CechboxElement onPress={toggleIsChecked} {...rest}>
         {
