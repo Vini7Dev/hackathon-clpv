@@ -45,6 +45,7 @@ const DateTimeInput: React.FC<IDateTimeInputProps> = ({
             value={value}
             onChange={toggleOpenDateTimePicker}
             mode={mode}
+            maximumDate={new Date()}
             {...rest}
           />
         )
