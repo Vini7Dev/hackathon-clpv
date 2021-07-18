@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
 
+import Logo from '../../assets/logo.jpg';
 import {
   Container,
   AppLogo,
@@ -25,7 +26,7 @@ const Header: React.FC = () => {
 
   return (
     <Container>
-      <AppLogo />
+      <AppLogo source={Logo} />
 
       <GreetingsArea>
         <HelloArea>

@@ -20,7 +20,7 @@ export const Container = styled.View`
   justify-content: space-between;
 `;
 
-export const AppLogo = styled.View`
+export const AppLogo = styled.Image`
   width: 50px;
   height: 50px;
   margin: 0 10px;
