@@ -13,18 +13,21 @@ interface IDateTimeInputProps extends BaseProps {
   iconName: string;
   valueText: string;
   mode?: 'date' | 'time';
+  onChangeValue(e: Event): void;
 }
 
 const { text } = theme.colors;
 
 const DateTimeInput: React.FC<IDateTimeInputProps> = ({
-  iconName, valueText, mode = 'date', value, ...rest
+  iconName, valueText, mode = 'date', value, onChangeValue, ...rest
 }) => {
   const [show, setShow] = useState(false);
 
-  const toggleOpenDateTimePicker = useCallback(() => {
+  const toggleOpenDateTimePicker = useCallback((e) => {
     setShow(!show);
-  }, [show]);
+
+    onChangeValue(e);
+  }, [show, onChangeValue]);
 
   return (
     <Container activeOpacity={0.5} onPress={toggleOpenDateTimePicker}>

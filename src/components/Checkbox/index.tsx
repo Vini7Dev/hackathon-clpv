@@ -8,15 +8,26 @@ import {
   CechboxElement,
 } from './styles';
 
-const Checkbox: React.FC<PressableProps> = ({ children, ...rest }) => {
+interface ICheckbox extends PressableProps {
+  isChecked: boolean;
+  toggleIsChecked(): void;
+}
+
+const Checkbox: React.FC<ICheckbox> = ({
+  isChecked, toggleIsChecked, children, ...rest
+}) => {
   return (
     <Container>
       <Label>
         {children}
       </Label>
 
-      <CechboxElement {...rest}>
-        <Icon name="check" size={29} />
+      <CechboxElement onPress={toggleIsChecked} {...rest}>
+        {
+          isChecked && (
+          <Icon name="check" size={29} />
+          )
+        }
       </CechboxElement>
     </Container>
   );

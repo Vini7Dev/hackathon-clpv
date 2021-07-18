@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Keyboard, KeyboardAvoidingView } from 'react-native';
+import { Alert, Keyboard, KeyboardAvoidingView } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
+import * as Yup from 'yup';
 
 import {
   Container,
@@ -33,9 +34,50 @@ const CreateAccount: React.FC = () => {
 
   const [keyboardIsOpen, setKeyboardIsOpen] = useState(false);
 
+  const [name, setName] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [whatsapp, setWhatsapp] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmationPassword, setConfirmationPassword] = useState('');
+  const [termsConfirmation, setTermsConfirmation] = useState(false);
+
   const goBackToLoginScreen = useCallback(() => {
     navigation.goBack();
   }, [navigation]);
+
+  const handleSubmitForm = useCallback(async () => {
+    try {
+      const shape = Yup.object().shape({
+        name: Yup.string().required('Informe o nome!'),
+        cpf: Yup.string().required('Informe o CPF!'),
+        whatsapp: Yup.string().required('Informe o Whatsapp!'),
+        email: Yup.string().required('Informe o email!').email('Informe um email válido!'),
+        password: Yup.string().required('Informe a senha!'),
+        confirmationPassword: Yup.string().oneOf(
+          [Yup.ref('password')], 'A confirmação deve ser igual a senha.',
+        ),
+        termsConfirmation: Yup.boolean().isTrue('Você precisa concordar com os termos!'),
+      });
+
+      await shape.validate({
+        name,
+        cpf,
+        whatsapp,
+        email,
+        password,
+        confirmationPassword,
+        termsConfirmation,
+      });
+
+      navigation.reset({
+        routes: [{ name: 'Login' }],
+        index: 0,
+      });
+    } catch (error) {
+      Alert.alert(error.errors[0]);
+    }
+  }, [name, cpf, whatsapp, email, password, confirmationPassword, termsConfirmation, navigation]);
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
@@ -80,33 +122,65 @@ const CreateAccount: React.FC = () => {
             <InputGroupTitle>Dados do cidadão</InputGroupTitle>
 
             <InputMargin>
-              <Input iconName="type" placeholder="Informe seu nome completo" />
+              <Input
+                iconName="type"
+                placeholder="Informe seu nome completo"
+                onChangeText={setName}
+              />
             </InputMargin>
 
             <InputMargin>
-              <Input iconName="user" placeholder="Informe seu CPF" keyboardType="numeric" />
+              <Input
+                iconName="user"
+                placeholder="Informe seu CPF"
+                keyboardType="numeric"
+                onChangeText={setCpf}
+              />
             </InputMargin>
 
             <InputMargin>
-              <Input iconName="phone" placeholder="Informe seu Whatsapp" keyboardType="numeric" />
+              <Input
+                iconName="phone"
+                placeholder="Informe seu Whatsapp"
+                keyboardType="numeric"
+                onChangeText={setWhatsapp}
+              />
             </InputMargin>
 
             <InputGroupTitle>Dados da conta</InputGroupTitle>
 
             <InputMargin>
-              <Input iconName="at-sign" placeholder="Informe seu email" keyboardType="email-address" />
+              <Input
+                iconName="at-sign"
+                placeholder="Informe seu email"
+                keyboardType="email-address"
+                onChangeText={setEmail}
+              />
             </InputMargin>
 
             <InputMargin>
-              <Input iconName="lock" placeholder="Informe sua senha" secureTextEntry />
+              <Input
+                iconName="lock"
+                placeholder="Informe sua senha"
+                onChangeText={setPassword}
+                secureTextEntry
+              />
             </InputMargin>
 
             <InputMargin>
-              <Input iconName="lock" placeholder="Confirme sua senha" secureTextEntry />
+              <Input
+                iconName="lock"
+                placeholder="Confirme sua senha"
+                onChangeText={setConfirmationPassword}
+                secureTextEntry
+              />
             </InputMargin>
 
             <InputMargin>
-              <Checkbox>
+              <Checkbox
+                isChecked={termsConfirmation}
+                toggleIsChecked={() => setTermsConfirmation(!termsConfirmation)}
+              >
                 Eu li e concordo com os
                 {' '}
                 <PrimaryColorText>Termos de Uso</PrimaryColorText>
@@ -118,7 +192,7 @@ const CreateAccount: React.FC = () => {
             </InputMargin>
 
             <ButtonMargin>
-              <Button text="Cadastrar-se" />
+              <Button text="Cadastrar-se" onPress={handleSubmitForm} />
             </ButtonMargin>
           </Form>
         </Content>

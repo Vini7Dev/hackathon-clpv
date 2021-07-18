@@ -24,8 +24,8 @@ import ProblemTypeItem from '../../components/ProblemTypeItem';
 const ChooseOccurrenceType: React.FC = () => {
   const navigation = useNavigation();
 
-  const goToRegisterOccurrenceScreen = useCallback((type_id: number) => {
-    navigation.navigate('RegisterOccurrence', { type_id });
+  const goToRegisterOccurrenceScreen = useCallback((problem_type_id: number) => {
+    navigation.navigate('RegisterOccurrence', { problem_type_id });
   }, [navigation]);
 
   return (
