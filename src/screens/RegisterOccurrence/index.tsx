@@ -1,7 +1,9 @@
 import React, { useCallback, useState } from 'react';
 import { Alert, KeyboardAvoidingView } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { launchImageLibrary, Asset } from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/Feather';
+
 import MapView, {
   Marker,
   PROVIDER_GOOGLE,
@@ -36,7 +38,7 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import SelectOptions, { IOptionData } from '../../components/SelectOptions';
 import DateTimeInput from '../../components/DateTimeInput';
-// import PhotoItem from '../../components/PhotoItem';
+import PhotoItem from '../../components/PhotoItem';
 
 import { formatDate, formatTime, IDatePickerEvent } from '../../utils/formatDateTime';
 
@@ -52,7 +54,6 @@ const RegisterOccurrence: React.FC = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const { problem_type_id } = route.params as IRouteParams;
-  console.log(problem_type_id);
 
   const [addressSuggestionsIsOpen, setAddressSuggestionsIsOpen] = useState(false);
   const [locationOptions, setLocationOptions] = useState<IOptionData[]>([]);
@@ -64,6 +65,7 @@ const RegisterOccurrence: React.FC = () => {
   });
 
   const [problemTypeId, setProblemTypeId] = useState(problem_type_id);
+  const [images, setImages] = useState<Asset[]>([]);
   const [observations, setObservations] = useState('');
   const [ownerName, setOwnerName] = useState('');
   const [phoneForPurchase, setPhoneForPurchase] = useState('');
@@ -80,9 +82,52 @@ const RegisterOccurrence: React.FC = () => {
     });
   }, [navigation]);
 
+  const handleDeleteSelectedImage = useCallback((index: number) => {
+    const newImagesArray = images;
+
+    newImagesArray.splice(index, 1);
+
+    setImages([...newImagesArray]);
+  }, [images, setImages]);
+
+  const handleQuestionToDeleteImage = useCallback((index: number) => {
+    Alert.alert(
+      'Deseja apagar a imagem?',
+      'Esta ação não pode ser desfeita!',
+      [
+        {
+          text: 'Sim',
+          onPress: () => handleDeleteSelectedImage(index),
+        },
+        { text: 'Não' },
+      ],
+    );
+  }, [handleDeleteSelectedImage]);
+
+  const handleGetImage = useCallback(() => {
+    launchImageLibrary({
+      mediaType: 'photo',
+      selectionLimit: 99,
+    }, (response) => {
+      if (response.didCancel) return;
+
+      if (response.errorCode || response.errorMessage) {
+        Alert.alert('Erro ao carregar as fotos!');
+        return;
+      }
+
+      if (response.assets) {
+        setImages([...images, ...response.assets]);
+      }
+    });
+  }, [images]);
+
   const handleSubmitForm = useCallback(async () => {
     try {
-      Alert.alert('VALIDAR IMAGENS!!!');
+      if (images.length === 0) {
+        Alert.alert('Adicione as imagens do ocorrido!');
+        return;
+      }
 
       const shape = Yup.object().shape({
         problemTypeId: Yup.number().required('O tipo de problema não foi encontrado!'),
@@ -115,15 +160,15 @@ const RegisterOccurrence: React.FC = () => {
       });
 
       // ENVIAR O PONTO DE REFERÊNCIA
+      // ENVIAR AS IMAGENS TAMBÉM
 
-      Alert.alert('PASSOU!!!');
-
-      // goToHomeScreen();
+      goToHomeScreen();
     } catch (error) {
       Alert.alert(error.errors[0]);
     }
   }, [
     problemTypeId,
+    images,
     observations,
     ownerName,
     phoneForPurchase,
@@ -131,6 +176,7 @@ const RegisterOccurrence: React.FC = () => {
     time,
     selectedAddress,
     number,
+    goToHomeScreen,
   ]);
 
   const handleOnSelectAddress = useCallback((address: IOptionData) => {
@@ -243,23 +289,40 @@ const RegisterOccurrence: React.FC = () => {
             </Title>
 
             <PhotosArea>
-              <EmptyListMessageArea>
-                <Icon
-                  name="alert-triangle"
-                  size={24}
-                  color={text_dark}
-                />
+              {
+                images.length === 0
+                  ? (
+                    <EmptyListMessageArea>
+                      <Icon
+                        name="alert-triangle"
+                        size={24}
+                        color={text_dark}
+                      />
 
-                <EmptyListMessage>
-                  Nenhuma foto
-                  {'\n'}
-                  adicionada
-                </EmptyListMessage>
-              </EmptyListMessageArea>
+                      <EmptyListMessage>
+                        Nenhuma foto
+                        {'\n'}
+                        adicionada
+                      </EmptyListMessage>
+                    </EmptyListMessageArea>
+                  )
+                  : images.map((image, index) => (
+                    <PhotoItem
+                      key={index.toString()}
+                      index={index}
+                      uri={image.uri as string}
+                      onDelete={() => handleQuestionToDeleteImage(index)}
+                    />
+                  ))
+              }
             </PhotosArea>
 
             <AddPhotoButtonView>
-              <Button text="Adicionar" icon="camera" />
+              <Button
+                text="Adicionar"
+                icon="camera"
+                onPress={handleGetImage}
+              />
             </AddPhotoButtonView>
           </Section>
 

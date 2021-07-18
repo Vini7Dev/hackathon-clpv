@@ -7,12 +7,18 @@ import {
   RemoveButton,
 } from './styles';
 
-const PhotoItem: React.FC = () => {
+interface IPhotoItem {
+  index: number;
+  uri: string;
+  onDelete(index: number): void;
+}
+
+const PhotoItem: React.FC<IPhotoItem> = ({ index, uri, onDelete }) => {
   return (
     <Container>
-      <Photo source={{ uri: '' }} />
+      <Photo source={{ uri }} />
 
-      <RemoveButton activeOpacity={0.9}>
+      <RemoveButton activeOpacity={0.9} onPress={() => onDelete(index)}>
         <Icon name="x" color="#FFFFFF" size={35} />
       </RemoveButton>
     </Container>
