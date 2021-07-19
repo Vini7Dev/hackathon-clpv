@@ -82,7 +82,7 @@ const RegisterOccurrence: React.FC = () => {
 
   const goToHomeScreen = useCallback(() => {
     navigation.reset({
-      routes: [{ name: 'Home' }],
+      routes: [{ name: 'Home', params: { showTnkdModal: true } }],
       index: 0,
     });
   }, [navigation]);
